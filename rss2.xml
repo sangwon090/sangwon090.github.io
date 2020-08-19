@@ -9,8 +9,25 @@
     <atom:link href="/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description></description>
-    <pubDate>Wed, 19 Aug 2020 15:14:31 GMT</pubDate>
+    <pubDate>Wed, 19 Aug 2020 16:11:34 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>Build your own 64bit Raspberry Pi OS Lite</title>
+      <link>https://blog.sryu.dev/2020/08/20/Build-your-own-64bit-Raspberry-Pi-OS-Lite/</link>
+      <guid>https://blog.sryu.dev/2020/08/20/Build-your-own-64bit-Raspberry-Pi-OS-Lite/</guid>
+      <pubDate>Wed, 19 Aug 2020 15:20:16 GMT</pubDate>
+      <description>
+      
+        &lt;p&gt;Some months ago, the beta version of 64bit Raspberry Pi OS was released, but there was no lite image on &lt;a href=&quot;https://www.raspberrypi.org/forums/viewtopic.php?t=275370&quot;&gt;the post&lt;/a&gt;. I finally figured out that I can build it using &lt;a href=&quot;https://github.com/RPi-Distro/pi-gen&quot;&gt;pi-gen&lt;/a&gt; so I’ll tell you how to do that.&lt;/p&gt;
+      
+      </description>
+      
+      
+      <content:encoded><![CDATA[<p>Some months ago, the beta version of 64bit Raspberry Pi OS was released, but there was no lite image on <a href="https://www.raspberrypi.org/forums/viewtopic.php?t=275370">the post</a>. I finally figured out that I can build it using <a href="https://github.com/RPi-Distro/pi-gen">pi-gen</a> so I’ll tell you how to do that.</p><a id="more"></a><p>Firstly, you need to clone <code>pi-gen</code> repository.</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> -b arm64 https://github.com/RPi-Distro/pi-gen.git</span><br><span class="line"><span class="built_in">cd</span> pi-gen</span><br><span class="line"></span><br><span class="line"><span class="comment"># Use this command if you want to build a 32bit image:</span></span><br><span class="line"><span class="comment"># git clone https://github.com/RPi-Distro/pi-gen.git</span></span><br></pre></td></tr></table></figure><p>Then, specify the image name.</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">"IMG_NAME='raspios'"</span> &gt; config</span><br></pre></td></tr></table></figure><p>There are some more options to customize the image, so see <a href="https://github.com/RPi-Distro/pi-gen#config">this page</a> for more information.</p><p>Let’s tell the build script that we want to build a lite image.</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">touch ./stage3/SKIP ./stage4/SKIP ./stage5/SKIP</span><br><span class="line">touch ./stage2/EXPORT_IMAGE</span><br></pre></td></tr></table></figure><p>If you want to customize the packages to install, I recommend you to see <a href="https://github.com/RPi-Distro/pi-gen#stage-anatomy">this page</a>.</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Use this command if you're using Debian Buster or Ubuntu Xerial.</span></span><br><span class="line">sudo apt install coreutils quilt parted qemu-user-static debootstrap zerofree zip dosfstools bsdtar libcap2-bin grep rsync xz-utils file git curl bc</span><br><span class="line">sudo ./build.sh</span><br><span class="line"></span><br><span class="line"><span class="comment"># Otherwise, you should use docker instead.</span></span><br><span class="line">sudo ./build-docker.sh</span><br></pre></td></tr></table></figure><p>The build process takes a while, and the generated files will be in the <code>deploy</code> folder.</p>]]></content:encoded>
+      
+      <comments>https://blog.sryu.dev/2020/08/20/Build-your-own-64bit-Raspberry-Pi-OS-Lite/#disqus_thread</comments>
+    </item>
     
     <item>
       <title>Raspberry Pi OS 이미지를 직접 빌드하기</title>
